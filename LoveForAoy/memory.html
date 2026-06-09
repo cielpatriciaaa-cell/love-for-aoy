@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Anniversary</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffd9e8;
+      font-family: Tahoma, sans-serif;
+    }
+
+    .box {
+      max-width: 500px;
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.7);
+      color: #a04870;
+      font-size: 22px;
+      line-height: 1.8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div id="text"></div>
+  </div>
+
+  <script>
+    const message = `สุขสันต์วันครบรอบนะออย ❤️ ขอบคุณที่เข้ามาเป็นรอยยิ้มของเค้า ขอบคุณที่อยู่ข้าง ๆ กันมาตลอด ไม่ว่าจะผ่านไปกี่วัน เค้าก็ยังเลือกออยเหมือนเดิม รักออยที่สุดนะ 💖`;
+    let i = 0;
+
+    function typing() {
+      const textEl = document.getElementById("text");
+      if (!textEl) return;
+
+      if (i < message.length) {
+        textEl.innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typing, 60);
+      }
+    }
+
+    typing();
+  </script>
+</body>
+</html>

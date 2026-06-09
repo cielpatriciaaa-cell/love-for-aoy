@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝖪𝖤𝖳𝖲𝖠𝖱𝖨𝖭 ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Tahoma, sans-serif;
+      background: linear-gradient(180deg, #ffd9e8, #ffcfe0, #fff0f6);
+      overflow: hidden;
+      min-height: 100vh;
+      position: relative;
+      color: #8a3d61;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .hearts-bg,
+    .photos-fall,
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      top: -10vh;
+      color: #ff8fba;
+      animation: fall linear infinite;
+      opacity: 0.75;
+    }
+
+    .photo-fall {
+      position: absolute;
+      top: -20vh;
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(255, 130, 170, 0.25);
+      border: 3px solid rgba(255, 255, 255, 0.8);
+      animation: photoFall linear infinite;
+      opacity: 0.95;
+    }
+
+    .sparkle {
+      position: absolute;
+      color: #fff;
+      animation: twinkle 2.5s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 2;
+      width: 92%;
+      max-width: 430px;
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 14px 35px rgba(255, 137, 179, 0.22);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      color: #ff5d98;
+    }
+
+    .video-box {
+      width: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(255, 123, 168, 0.25);
+      background: #fff;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      background: #f8dbe7;
+    }
+
+    .video-error {
+      display: none;
+      padding: 18px;
+      color: #a14e73;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .message {
+      margin-top: 18px;
+      min-height: 110px;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.55);
+      color: #934b6e;
+      font-size: 17px;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: 0.8s ease;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(110vh) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    @keyframes photoFall {
+      0% {
+        transform: translateY(-20vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120vh) rotate(18deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        transform: scale(0.7);
+        opacity: 0.35;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-bg" id="heartsBg"></div>
+  <div class="photos-fall" id="photosFall"></div>
+  <div class="sparkles" id="sparkles"></div>
+  <div class="wrapper">
+    <h1>𝖪𝖤𝖳𝖲𝖠𝖱𝖨𝖭</h1>
+    <div class="video-box">
+      <video id="loveVideo" controls playsinline poster="images/cover.jpg">
+        <source src="videos/112.mov" type="video/mp4">
+      </video> 
+    </div>
+    <div class="message" id="finalMessage">
+      สุขสันต์วันครบรอบนะเเฟน ❤️<br />
+      ขอบคุณที่เข้ามาเป็นรอยยิ้มของเค้า<br />
+      ขอบคุณที่อยู่ข้าง ๆ กันมาตลอด<br />
+      เค้ารักเธอทู๊กวันนน<br />
+      รักเเฟนนะ ( ´͈ ᵕ `͈ )
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const video = document.getElementById("loveVideo");
+    const music = document.getElementById("bgMusic");
+    const finalMessage = document.getElementById("finalMessage");
+    const videoError = document.getElementById("videoError");
+
+    function createHearts() {
+      const container = document.getElementById("heartsBg");
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 14 + "px";
+        heart.style.animationDuration = Math.random() * 5 + 6 + "s";
+        heart.style.animationDelay = Math.random() * 6 + "s";
+        container.appendChild(heart);
+      }
+    }
+
+    function createSparkles() {
+      const container = document.getElementById("sparkles");
+      const icons = ["✦", "✨", "✧"];
+      for (let i = 0; i < 30; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        sparkle.style.fontSize = Math.random() * 12 + 10 + "px";
+        sparkle.style.animationDelay = Math.random() * 2 + "s";
+        container.appendChild(sparkle);
+      }
+    }
+
+    function createFallingPhotos() {
+      const container = document.getElementById("photosFall");
+      const photos = ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg", "images/6.jpg", "images/7.jpg",];
+
+      setInterval(() => {
+        const img = document.createElement("img");
+        img.className = "photo-fall";
+        img.src = photos[Math.floor(Math.random() * photos.length)];
+        img.style.left = Math.random() * 90 + "vw";
+        img.style.animationDuration = Math.random() * 6 + 7 + "s";
+        container.appendChild(img);
+
+        setTimeout(() => {
+          img.remove();
+        }, 9000);
+      }, 1000);
+    }
+
+    video.addEventListener("play", () => {
+      music.play().catch(() => {});
+    });
+
+    video.addEventListener("ended", () => {
+      finalMessage.classList.add("show");
+    });
+
+    video.addEventListener("error", () => {
+      video.style.display = "none";
+      videoError.style.display = "block";
+    });
+
+    createHearts();
+    createSparkles();
+    createFallingPhotos();
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Loading...</title>
+
+<style>
+
+body{
+
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+
+background:linear-gradient(180deg,#ffd6e7,#ffeef5);
+
+font-family:sans-serif;
+
+overflow:hidden;
+
+}
+
+.box{
+
+text-align:center;
+
+}
+
+h1{
+
+color:#ff5c93;
+
+font-size:40px;
+
+}
+
+p{
+
+font-size:22px;
+
+color:#777;
+
+}
+
+.bar{
+
+width:280px;
+
+height:18px;
+
+background:white;
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin:auto;
+
+margin-top:30px;
+
+}
+
+.fill{
+
+height:100%;
+
+width:0%;
+
+background:#ff6ca9;
+
+animation:load 4s forwards;
+
+}
+
+@keyframes load{
+
+100%{
+
+width:100%;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+<img src="images/11.png">
+
+<h2>มีอะไรจะให้เธออออ</h2>
+
+<p>โหลดเเปป (,,• ֊ •,,) </p>
+
+<div class="bar">
+
+<div class="fill"></div>
+
+</div>
+
+</div>
+
+<script>
+
+setTimeout(()=>{
+
+window.location="video.html";
+
+},4000);
+
+</script>
+
+</body>
+
+</html>
